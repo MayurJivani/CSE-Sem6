@@ -1,10 +1,6 @@
-const http = require('http');
-
-const requestListener = function (req, res) {
-  res.writeHead(200);
-  res.end('Hello, World!');
-}
-
-const port = 8080;
-const server = http.createServer(requestListener);
-console.log('server listening on port: ' + port);
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.write('Nobody, nobody-ayy is listenin');
+  res.end();
+}).listen(8080);
