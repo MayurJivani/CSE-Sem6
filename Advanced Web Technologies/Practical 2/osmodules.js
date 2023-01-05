@@ -1,0 +1,8 @@
+const os = require("os")
+console.log("Enrollment No - 20BCP311D")
+console.log("Name - Mayur Jivani")
+console.log(os.freemem())
+console.log(os.homedir())
+console.log(os.hostname())
+console.log(os.platform())
+console.log(os.machine())
