@@ -8,7 +8,9 @@ http.createServer(function (req, res) {
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
       let myFileName = files.filetoupload.originalFilename;
-      myFileName = myFileName.split('.').join('-' + Date.now() + '.');
+      const timeElapsed = Date.now();
+      const today = new Date(timeElapsed).toUTCString().replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+      myFileName = myFileName.split('.').join('-' + today + '.');
       var oldpath = files.filetoupload.filepath;
       var newpath = 'C:\\Temp\\' + myFileName;
       fs.rename(oldpath, newpath, function (err) {
