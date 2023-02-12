@@ -15,14 +15,14 @@ while True:
     five = node[0]
     four = node[1]
     maps[str(node)] = []
-    list = maps[str(node)]
+    lis = maps[str(node)]
     tree[-1].append(node)
-    tree[-1].append("->")
+    tree[-1].append("------>")
     if five < 5:
         five = 5
         if [five,four] not in closeL and [five,four] not in openL:
            openL.append([five,four])
-           list.append([five,four])
+           lis.append([five,four])
         tree[-1].append([five,four])
         five = node[0]
         four = node[1]
@@ -30,54 +30,38 @@ while True:
         four = 4
         if [five,four] not in closeL and [five,four] not in openL:
            openL.append([five,four])
-           list.append([five,four])
-        tree[-1].append([five,four])
-        five = node[0]
-        four = node[1]
-    if five > 0:
-        five = 0
-        if [five,four] not in closeL:
-           openL.append([five,four])
-           list.append([five,four])
-        tree[-1].append([five,four])
-        five = node[0]
-        four = node[1]
-    if four > 0:
-        four = 0
-        if [five,four] not in closeL:
-           openL.append([five,four])
-           list.append([five,four])
+           lis.append([five,four])
         tree[-1].append([five,four])
         five = node[0]
         four = node[1]
     if five > 0 and four < 4:
         if four+five > 4:
             temp = 4 - four
-            five-=temp
-            four+=temp
+            five -= temp
+            four += temp
         else:
             four+=five
             five = 0
         if [five,four] not in closeL:
            openL.append([five,four])
-           list.append([five,four])
+           lis.append([five,four])
         tree[-1].append([five,four])
         five = node[0]
         four = node[1]
     if four > 0 and five < 5:
-        if four+five > 5:
+        if five+four > 5:
             temp = 5 - five
             four-=temp
             five+=temp
         else:
             five+=four
             four = 0
-        if [five,four] not in closeL:
+    if [five,four] not in closeL:
            openL.append([five,four])
-           list.append([five,four])
-        tree[-1].append([five,four])
-        five = node[0]
-        four = node[1]
+           lis.append([five,four])
+    tree[-1].append([five,four])
+    five = node[0]
+    four = node[1]
     if len(openL) == 0:
         break
 goalIndex = 0
@@ -99,19 +83,21 @@ for i in rootPaths:
 for i in goalPaths:
     if i not in finalPath:
         finalPath.append(i)
-
 print()
-print("Root Path:",rootPaths)
-print("Goal Path:",goalPaths)
-print("Total Path:",finalPath)
+print("Root Path: ",rootPaths)
+print("Goal Path: ",goalPaths)
+print("Total Path: ",finalPath)
 finalPath.reverse()
-i-0
+i = 0
 while True:
-	try:
-		if finalPath[i+1] == root:break
-		if finalPath[i] in maps[str(finalPath[i+1])]:
-			i+=1
-		else:
-			finalPath.pop(i+1)
-	except:
-		
+    try:
+        if finalPath[i+1] == root:break
+        if finalPath[i] in maps[str(finalPath[i+1])]:
+            i+=1
+        else:
+            finalPath.pop(i+1)
+    except:
+        print("Solution Do Not Exist")
+        exit()
+finalPath.reverse()
+print("Final Path: ",finalPath)
